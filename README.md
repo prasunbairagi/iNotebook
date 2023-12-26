@@ -1,7 +1,9 @@
 # iNotebook
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-For backend Node.js and Express.js has been used with mongoDB as a database
+For backend Node.js and Express.js has been used with mongoDB as a database.
+
+This app has been created to fetch, store, update and delete user specific notes. 
 
 ## Available Scripts
 
