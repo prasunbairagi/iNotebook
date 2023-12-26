@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# iNotebook
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For backend Node.js and Express.js has been used with mongoDB as a database
 
 ## Available Scripts
 
