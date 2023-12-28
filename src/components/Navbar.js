@@ -1,8 +1,10 @@
 // import React,{useEffect} from 'react'
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const theme = useSelector((state) => state.theme);
   let location = useLocation();
   let navigate = useNavigate();
   const handleLogout = () => {

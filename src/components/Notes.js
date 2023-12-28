@@ -37,7 +37,28 @@ const Notes = (props) => {
   const refClose = useRef(null);
   return (
     <>
+    <div className="row px-0 mx-0">
+      <div className="col-12 col-md-4 col-lg-4">
       <AddNote showAlert={props.showAlert}/>
+      </div>
+      <div className="col-12 col-md-8 col-lg-8 mx-0 px-0">
+      <div className="row mx-0 px-0 py-3">
+        <h3 className="pb-2">Yours notes</h3>
+        <div className="container">
+        {notes.length===0 && 'No notes to display'}
+        </div>
+        <div className="row mx-0 px-0" style={{maxHeight:'400px',overflow:'auto'}}>
+        {notes.map((note) => {
+          return (
+            <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
+          );
+        })}
+        </div>
+        
+      </div>
+      </div>
+    </div>
+      
       <button
         type="button"
         className="btn btn-primary d-none"
@@ -137,17 +158,7 @@ const Notes = (props) => {
           </div>
         </div>
       </div>
-      <div className="row py-3">
-        <h1>Yours notes</h1>
-        <div className="container">
-        {notes.length===0 && 'No notes to display'}
-        </div>
-        {notes.map((note) => {
-          return (
-            <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
-          );
-        })}
-      </div>
+      
     </>
   );
 };
