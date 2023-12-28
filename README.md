@@ -4,9 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 For backend Node.js and Express.js has been used with mongoDB as a database.
 This app has been created to fetch, store, update and delete user specific notes.
 
-## 🚧 Under Development
+## 🚧 iNotebook 2.0 - Under Development
 
-Version 2 will come soon with new updates.
+Version 2.0 will come soon with new updates.
 Want to review or suggest -> Please checkout my branch Version-2.0
 
 ## Available Scripts
