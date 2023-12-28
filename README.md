@@ -1,7 +1,13 @@
-# Getting Started with Create React App
+# iNotebook v2.0
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For backend Node.js and Express.js has been used with mongoDB as a database.
+This app has been created to fetch, store, update and delete user specific notes. 
 
+## New Updates
+- Dark theme mode available
+- UI changed
+  
 ## Available Scripts
 
 In the project directory, you can run:
