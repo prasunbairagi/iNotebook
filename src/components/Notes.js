@@ -37,7 +37,7 @@ const Notes = (props) => {
   const refClose = useRef(null);
   return (
     <>
-    <div className="row px-0 mx-0">
+    <div className="row pt-3 px-0 mx-0">
       <div className="col-12 col-md-4 col-lg-4">
       <AddNote showAlert={props.showAlert}/>
       </div>

@@ -1,12 +1,10 @@
-// import React,{useContext} from "react";
-// import noteContext from "../context/notes/noteContext";
 import React from "react";
 import Notes from "./Notes";
+import { useSelector } from "react-redux";
 const Home = (props) => {
-  // const context = useContext(noteContext);
-  // const {notes, setNotes} = context;
+  const theme = useSelector((state) => state.theme);
   return (
-    <div>
+    <div className={`container ${theme==='dark'?'bg-dark':''}`}>
      <Notes showAlert={props.showAlert}/>
     </div>
   );

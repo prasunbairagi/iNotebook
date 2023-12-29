@@ -2,8 +2,12 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../state/index";
 const Navbar = () => {
+  const dispatch=useDispatch();
+  const actions = bindActionCreators(actionCreators, dispatch)
   const theme = useSelector((state) => state.theme);
   let location = useLocation();
   let navigate = useNavigate();
@@ -11,12 +15,9 @@ const Navbar = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-  // useEffect(() => {
-  //   console.log(location)
-  // }, [location]);
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className={`navbar navbar-expand-lg bg-body-tertiary ${theme === 'dark' ? 'navbar-dark' : 'navbar-light'}`}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             NoteBook
@@ -56,6 +57,17 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
+            <div className="my-auto">
+              {theme === "light" ? (
+                <button type="button" className="btn btn-dark" onClick={()=>{actions.darkTheme('dark')}}>
+                  Dark
+                </button>
+              ) : (
+                <button type="button" className="btn btn-light" onClick={()=>{actions.lightTheme('light')}}>
+                  Light
+                </button>
+              )}
+            </div>
             {!localStorage.getItem("token") ? (
               <form className="d-flex" role="search">
                 <Link

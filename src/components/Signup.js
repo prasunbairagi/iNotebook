@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const Signup = (props) => {
+  const theme = useSelector((state) => state.theme);
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -33,17 +34,22 @@ const Signup = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div className="d-flex py-5 px-3 justify-content-center">
-      <div className="py-4 px-4 rounded-2 shadow" style={{maxWidth:'500px'}}>
-        <h3 className="pb-3">Signup to use your iNotebook</h3>
-        <form onSubmit={handleSubmit}>
+    <div className="d-flex py-5 pt-3 px-3 justify-content-center">
+      <div className="py-4 px-4" style={{ maxWidth: "500px" }}>
+        <h3 className="pb-3">Signup to use your Notebook</h3>
+        <form
+          className={`p-3 rounded-2 ${
+            theme === "dark" ? "addnotecard-dark" : "addnotecard-light"
+          }`}
+          onSubmit={handleSubmit}
+        >
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Name
             </label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
               id="name"
               value={credentials.name}
               name="name"
@@ -57,16 +63,13 @@ const Signup = (props) => {
             </label>
             <input
               type="email"
-              className="form-control"
+              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
               id="email"
               value={credentials.email}
               name="email"
               onChange={onChange}
               aria-describedby="emailHelp"
             />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">
@@ -74,7 +77,7 @@ const Signup = (props) => {
             </label>
             <input
               type="password"
-              className="form-control"
+              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
               id="password"
               value={credentials.password}
               name="password"
@@ -89,7 +92,7 @@ const Signup = (props) => {
             </label>
             <input
               type="password"
-              className="form-control"
+              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
               id="cpassword"
               value={credentials.cpassword}
               name="cpassword"

@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
-
+import { useSelector } from "react-redux";
 const AddNote = (props) => {
+  const theme= useSelector((state)=>state.theme)
   const context = useContext(noteContext);
   const { addNote } = context;
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
@@ -18,14 +19,14 @@ const AddNote = (props) => {
     <div className="py-3">
       <h3 className="pb-2">Add a note</h3>
 
-      <form className="card p-3">
+      <form className={`card ${theme === 'dark' ? 'addnotecard-dark' : 'addnotecard-light'} p-3`}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
             id="title"
             name="title"
             aria-describedby="emailHelp"
@@ -38,21 +39,13 @@ const AddNote = (props) => {
             Description
           </label>
           <textarea
-            className="form-control"
+            className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
             id="description"
             name="description"
             onChange={onChange}
             value={note.description}
             rows="3"
           />
-          {/* <input
-            type="text"
-            className="form-control"
-            id="description"
-            name="description"
-            onChange={onChange}
-            value={note.description}
-          /> */}
         </div>
         <div className="mb-3">
           <label htmlFor="tag" className="form-label">
@@ -60,7 +53,7 @@ const AddNote = (props) => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
             id="tag"
             name="tag"
             onChange={onChange}

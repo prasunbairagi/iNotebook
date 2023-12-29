@@ -11,3 +11,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar-dark{
+  background-color:black !important;
+  color:white !important;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+.navbar-light{
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+.bg-dark{
+  background-color:black !important;
+  color:white !important;
+}
+.addnotecard-dark{
+  background-color:black !important;
+  color:white !important;
+  border: 1px solid rgba(192, 192, 192, 0.1);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+.addnotecard-light {
+  
+  border: 1px solid rgb(8, 8, 8,0.1);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+.form-control-dark{
+  background-color: #121313 !important;
+  color:white !important;
+  border:0px !important;
+}
+.form-control-dark:focus,.form-control-dark:hover{
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.5) !important;
+}
+.form-control:focus,.form-control:hover{
+  border: 1px solid rgb(8, 8, 8,0.3) !important;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.6) ;
+}
