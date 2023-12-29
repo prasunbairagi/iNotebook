@@ -47,3 +47,6 @@ code {
   border: 1px solid rgb(8, 8, 8,0.3) !important;
   box-shadow: 0 0 10px rgba(192, 192, 192, 0.6) ;
 }
+.tags{
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.6) ;
+}

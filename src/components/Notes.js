@@ -47,7 +47,7 @@ const Notes = (props) => {
         <div className="container">
         {notes.length===0 && 'No notes to display'}
         </div>
-        <div className="row mx-0 px-0" style={{maxHeight:'400px',overflow:'auto'}}>
+        <div className="row py-1 mx-0 px-0" style={{maxHeight:'400px',overflow:'auto'}}>
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />

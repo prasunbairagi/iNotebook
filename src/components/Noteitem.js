@@ -7,10 +7,10 @@ const Noteitem = (props) => {
   const {deleteNote} = context;
   const { note,updateNote } = props;
   return (
-    <div className="col-md-6">
+    <div className="col-md-6 py-1">
       <div className={`card ${theme === 'dark' ? 'addnotecard-dark' : 'addnotecard-light'} my-2`}>
         <div className="card-body" style={{position:'relative'}}>
-          <span className="text-white px-2 rounded-3" style={{position:'absolute',top:"-10px",left:"0px",backgroundColor:'#ff7e00'}}>{note.tag}</span>
+          <span className={`text-white px-2 rounded-3 tags`} style={{position:'absolute',top:"-10px",left:"0px",backgroundColor:'#ff7e00'}}>{note.tag}</span>
           <div className="d-flex justify-content-between">            
             <div>
               <h5 className="card-title">{note.title}</h5>
