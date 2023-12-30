@@ -7,7 +7,7 @@ This app has been created to fetch, store, update and delete user specific notes
 ## 🚧 iNotebook 2.0 - Under Development
 
 Version 2.0 will come soon with new updates.\
-Want to review or suggest -> Please checkout my branch Version-2.0
+Want to review or suggest -> Please checkout my branch [Version-2.0](https://github.com/prasunbairagi/iNotebook/tree/Version-2.0)
 
 ## Available Scripts
 
