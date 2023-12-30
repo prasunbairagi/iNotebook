@@ -44,9 +44,18 @@ code {
   box-shadow: 0 0 10px rgba(192, 192, 192, 0.5) !important;
 }
 .form-control:focus,.form-control:hover{
-  border: 1px solid rgb(8, 8, 8,0.3) !important;
+  /* border: 1px solid rgb(8, 8, 8,0.3) !important; */
   box-shadow: 0 0 10px rgba(192, 192, 192, 0.6) ;
 }
 .tags{
   box-shadow: 0 0 10px rgba(192, 192, 192, 0.6) ;
+}
+.modal-header-dark{
+  border-bottom:1px solid #2b2d2e!important
+}
+.modal-footer-dark{
+  border-top:1px solid #2b2d2e!important
+}
+.pointer{
+  cursor: pointer;
 }

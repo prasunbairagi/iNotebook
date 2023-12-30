@@ -3,7 +3,10 @@ import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 const Notes = (props) => {
+  const theme = useSelector((state) => state.theme);
   let navigate=useNavigate()
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
@@ -77,8 +80,8 @@ const Notes = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
+          <div className={`modal-content ${theme === 'dark' ? 'addnotecard-dark' : 'addnotecard-light'}`}>
+            <div className={`modal-header ${theme === 'dark' ? 'modal-header-dark' : ''}`}>
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Edit Node
               </h1>
@@ -97,7 +100,7 @@ const Notes = (props) => {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
                     id="etitle"
                     name="etitle"
                     aria-describedby="emailHelp"
@@ -113,7 +116,7 @@ const Notes = (props) => {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
                     id="edescription"
                     name="edescription"
                     onChange={onChange}
@@ -128,7 +131,7 @@ const Notes = (props) => {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
                     id="etag"
                     name="etag"
                     onChange={onChange}
@@ -137,7 +140,7 @@ const Notes = (props) => {
                 </div>
               </form>
             </div>
-            <div className="modal-footer">
+            <div className={`modal-footer ${theme === 'dark' ? 'modal-footer-dark' : ''}`}>
               <button
                 type="button"
                 className="btn btn-secondary"
