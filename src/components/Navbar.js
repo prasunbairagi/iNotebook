@@ -121,7 +121,7 @@ const Navbar = () => {
             {!localStorage.getItem("token") ? (
               <form className="d-flex" role="search">
                 <Link
-                  className="btn btn-primary mx-2"
+                  className="btn btn-primary me-2"
                   to="/login"
                   role="button"
                 >

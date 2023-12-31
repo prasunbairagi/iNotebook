@@ -84,12 +84,12 @@ router.post(
           .status(400)
           .json({success, error: "Please try to login with correct credentials" });
       }
-      const passwordCompare = bcrypt.compare(password,user.password);
+      const passwordCompare =await bcrypt.compare(password,user.password);
       if(!passwordCompare){
         success=false
         return res
           .status(400)
-          .json({ error: "Please try to login with correct credentials" });
+          .json({ error: "Wrong Password" });
       }
       const data={
         user:{

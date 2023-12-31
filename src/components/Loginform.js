@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 const Loginform = (props) => {
   const theme = useSelector((state) => state.theme);
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [forgotPassword, setForgotPassword] = useState(false);
   let navigate = useNavigate();
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -26,9 +27,16 @@ const Loginform = (props) => {
       localStorage.setItem("token", json.authtoken);
       navigate("/");
       props.showAlert("Successfully logged in", "success");
-    } else {
-      props.showAlert("User not found", "danger");
+    } else {      
+      if(json.error==='Wrong Password'){
+        setForgotPassword(true)        
+        props.showAlert("Wrong Password", "danger");
+      }
+      else{
+        props.showAlert("User not found", "danger");
       navigate("/signup");
+      }
+      
     }
   };
   return (
@@ -71,6 +79,9 @@ const Loginform = (props) => {
           <button type="submit" className="btn btn-primary mt-3">
             Submit
           </button>
+          {forgotPassword && <button type="submit" className="btn ms-3 btn-primary mt-3">
+            Forgot Password
+          </button>}
         </form>
       </div>
     </div>
