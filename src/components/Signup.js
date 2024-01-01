@@ -12,22 +12,32 @@ const Signup = (props) => {
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password } = credentials;
-    const response = await fetch("http://localhost:5000/api/auth/createuser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
-    });
-    const json = await response.json();
-    console.log(json);
-    if (json.success) {
-      localStorage.setItem("token", json.authtoken);
-      navigate("/");
-      props.showAlert("Account created successfully", "success");
+    const { name, email, password, cpassword } = credentials;
+    if (password === cpassword) {
+      const response = await fetch(
+        "http://localhost:5000/api/auth/createuser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password }),
+        }
+      );
+      const json = await response.json();
+      console.log(json);
+      if (json.success) {
+        localStorage.setItem("token", json.authtoken);
+        navigate("/");
+        props.showAlert("Account created successfully", "success");
+      } else {
+        props.showAlert("Sorry user already exists", "danger");
+      }
     } else {
-      props.showAlert("Sorry user already exists", "danger");
+      props.showAlert(
+        "Password and Confirm Password are not matching",
+        "danger"
+      );
     }
   };
   const onChange = (e) => {
@@ -49,7 +59,9 @@ const Signup = (props) => {
             </label>
             <input
               type="text"
-              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
+              className={`form-control ${
+                theme === "dark" ? "form-control-dark" : ""
+              }`}
               id="name"
               value={credentials.name}
               name="name"
@@ -63,7 +75,9 @@ const Signup = (props) => {
             </label>
             <input
               type="email"
-              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
+              className={`form-control ${
+                theme === "dark" ? "form-control-dark" : ""
+              }`}
               id="email"
               value={credentials.email}
               name="email"
@@ -77,7 +91,9 @@ const Signup = (props) => {
             </label>
             <input
               type="password"
-              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
+              className={`form-control ${
+                theme === "dark" ? "form-control-dark" : ""
+              }`}
               id="password"
               value={credentials.password}
               name="password"
@@ -92,7 +108,9 @@ const Signup = (props) => {
             </label>
             <input
               type="password"
-              className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
+              className={`form-control ${
+                theme === "dark" ? "form-control-dark" : ""
+              }`}
               id="cpassword"
               value={credentials.cpassword}
               name="cpassword"

@@ -5,6 +5,8 @@ const Loginform = (props) => {
   const theme = useSelector((state) => state.theme);
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [forgotPasswordBox, setForgotPasswordBox] = useState(false);
+
   let navigate = useNavigate();
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -42,12 +44,12 @@ const Loginform = (props) => {
   return (
     <div className="d-flex py-5 pt-3 px-3 justify-content-center">
       <div className="py-4 px-4 " style={{ maxWidth: "500px" }}>
-        <h3 className="pb-3">Login to use your Notebook</h3>
-        <form
+        {!forgotPasswordBox && <h3 className="pb-3">Login to use your Notebook</h3>}
+        {forgotPasswordBox && <h3 className="pb-3">Reset your Password</h3>}
+        <div
           className={`p-3 rounded-2 ${
             theme === "dark" ? "addnotecard-dark" : "addnotecard-light"
-          }`}
-          onSubmit={handleSubmit}
+          }`}          
         >
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -64,9 +66,12 @@ const Loginform = (props) => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">
+            {!forgotPasswordBox && <label htmlFor="password" className="form-label">
               Password
-            </label>
+            </label>}
+            {forgotPasswordBox && <label htmlFor="password" className="form-label">
+              Reset Password
+            </label>}
             <input
               type="password"
               className={`form-control ${theme === 'dark' ? 'form-control-dark' : ''}`}
@@ -76,13 +81,19 @@ const Loginform = (props) => {
               onChange={onChange}
             />
           </div>
-          <button type="submit" className="btn btn-primary mt-3">
+          {!forgotPasswordBox && <button type="submit" className="btn btn-primary mt-3" onClick={handleSubmit}>
             Submit
-          </button>
-          {forgotPassword && <button type="submit" className="btn ms-3 btn-primary mt-3">
+          </button>}
+          {forgotPassword && !forgotPasswordBox && <button className="btn ms-3 btn-primary mt-3" onClick={()=>{setForgotPasswordBox(true)}}>
             Forgot Password
           </button>}
-        </form>
+          {forgotPassword && forgotPasswordBox && <><button className="btn btn-primary mt-3" onClick={()=>{setForgotPasswordBox(true)}}>
+            Set Password
+          </button>
+          <button className="btn btn-primary ms-3 mt-3" onClick={()=>{setForgotPasswordBox(false);setForgotPassword(false)}}>
+          Back
+        </button></>}
+        </div>
       </div>
     </div>
   );
