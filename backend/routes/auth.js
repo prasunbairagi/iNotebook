@@ -121,4 +121,49 @@ router.post(
   }
 );
 
+//ROUTE 4: Reset Password using put "/api/auth/resetpassword" . No login required
+router.put(
+  "/resetpassword",
+  [
+    // Validate and sanitize the 'email' field
+    body("email", "Not a valid email").isEmail(),
+    // Validate the 'password' field
+    body("password", "Not a valid password").isLength({ min: 6 }),
+  ],
+  async (req, res) => {
+    let success=false
+    //if there are errors, return the errors
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+      success=false
+      return res.status(400).json({success, errors: result.array() });
+    }
+    
+    try {
+      // check whether the user with same email exists
+      let user = await User.findOne({ email: req.body.email });
+      if (!user) {
+        success=false
+        return res
+          .status(400)
+          .json({success, error: "Sorry this user is not present" });
+      }
+      const salt=await bcrypt.genSalt(10);
+      const newPasswordHash = await bcrypt.hash(req.body.password, salt);
+      
+      // Update the user's password in the database
+      await User.findByIdAndUpdate(user._id, { password: newPasswordHash });
+      const data={
+        user:{
+          id:user.id
+        }
+      }      
+      const authtoken = jwt.sign(data, JWT_SECRET);
+      success=true;
+      res.json({success, authtoken, message: "Password reset successfully"});      
+    } catch (error) {
+      res.status(500).send("Internal Server error");
+    }
+  }
+);
 module.exports = router;

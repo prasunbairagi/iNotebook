@@ -41,6 +41,36 @@ const Loginform = (props) => {
       
     }
   };
+  const changePassword = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/api/auth/resetpassword", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.success) {
+      localStorage.setItem("token", json.authtoken);
+      navigate("/");
+      props.showAlert("Password successfully changed", "success");
+    } else {      
+      if(json.error==='Sorry this user is not present'){
+        // setForgotPassword(true)        
+        props.showAlert("Sorry this user is not present", "danger");
+        navigate("/signup");
+      }
+      else{
+        props.showAlert("There is some error", "danger");        
+      }
+      
+    }
+  };
   return (
     <div className="d-flex py-5 pt-3 px-3 justify-content-center">
       <div className="py-4 px-4 " style={{ maxWidth: "500px" }}>
@@ -87,7 +117,7 @@ const Loginform = (props) => {
           {forgotPassword && !forgotPasswordBox && <button className="btn ms-3 btn-primary mt-3" onClick={()=>{setForgotPasswordBox(true)}}>
             Forgot Password
           </button>}
-          {forgotPassword && forgotPasswordBox && <><button className="btn btn-primary mt-3" onClick={()=>{setForgotPasswordBox(true)}}>
+          {forgotPassword && forgotPasswordBox && <><button className="btn btn-primary mt-3" onClick={changePassword}>
             Set Password
           </button>
           <button className="btn btn-primary ms-3 mt-3" onClick={()=>{setForgotPasswordBox(false);setForgotPassword(false)}}>
