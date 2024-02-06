@@ -27,6 +27,7 @@ const Loginform = (props) => {
     console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("username", json.name);
       navigate("/");
       props.showAlert("Successfully logged in", "success");
     } else {      

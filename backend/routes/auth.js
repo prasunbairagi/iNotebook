@@ -99,7 +99,7 @@ router.post(
       
       const authtoken = jwt.sign(data, JWT_SECRET);
       success=true;
-      res.json({success, authtoken});
+      res.json({name:user.name, success, authtoken});
     } catch (error) {
       console.log(error.message);
       res.status(500).send("Internal Server error");

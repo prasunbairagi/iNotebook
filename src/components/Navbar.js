@@ -13,8 +13,10 @@ const Navbar = () => {
   const theme = useSelector((state) => state.theme);
   let location = useLocation();
   let navigate = useNavigate();
+  const userName = localStorage.getItem('username')
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     navigate("/login");
   };
   return (
@@ -26,7 +28,7 @@ const Navbar = () => {
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            NoteBook
+            {userName && <span>{userName.split(" ")[0]}'s </span>}NoteBook 
           </Link>
           <div className="d-flex">
             <div className="d-block d-lg-none my-auto pe-3 pointer">
