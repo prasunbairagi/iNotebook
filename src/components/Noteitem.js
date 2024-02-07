@@ -1,14 +1,15 @@
 import React,{useContext} from "react";
 import noteContext from "../context/notes/noteContext";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 const Noteitem = (props) => {
-  const theme = useSelector((state) => state.theme);
+  // const theme = useSelector((state) => state.theme);
   const context = useContext(noteContext);
   const {deleteNote} = context;
   const { note,updateNote } = props;
   return (
     <div className="col-md-6 py-1">
-      <div className={`card ${theme === 'dark' ? 'addnotecard-dark' : 'addnotecard-light'} my-2`}>
+      {/* <div className={`card ${theme === 'dark' ? 'addnotecard-dark' : 'addnotecard-light'} my-2`}> */}
+      <div className={`card my-2`} style={{backgroundColor:"#fff000"}}>
         <div className="card-body" style={{position:'relative'}}>
           <span className={`text-white px-2 rounded-3 tags`} style={{position:'absolute',top:"-10px",left:"0px",backgroundColor:'#ff7e00'}}>{note.tag}</span>
           <div className="d-flex justify-content-between">            

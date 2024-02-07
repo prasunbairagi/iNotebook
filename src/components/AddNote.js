@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/css";
 const AddNote = (props) => {
-  const [color, setColor] = useColor("#561ecb");
+  const [color, setColor] = useColor("#fff700");
   // const [picker, setPicker] = useState(false);
   const theme = useSelector((state) => state.theme);
   const context = useContext(noteContext);
@@ -76,14 +76,27 @@ const AddNote = (props) => {
             />
           </div>
           <div className="d-flex justify-content-between pb-3">
-          <button
-            data-bs-toggle="modal" data-bs-target="#colorpallette"
-            type="button"
-            className="btn btn-primary my-2"            
-          >
-            Choose your color
-          </button>
-          <div className="my-auto">{color.hex}</div> </div>         
+            <button
+              data-bs-toggle="modal"
+              data-bs-target="#colorpallette"
+              type="button"
+              className="btn btn-primary my-2"
+            >
+              <div className="d-flex justify-content-between">
+                <div className="my-auto pe-3">Background</div>
+                <div
+                  className="my-auto"
+                  style={{
+                    backgroundColor: color.hex,
+                    width: "20px",
+                    border: "2px solid black",
+                    borderRadius: "4px",
+                    height: "20px",
+                  }}
+                ></div>
+              </div>
+            </button>
+          </div>
           <button
             disabled={note.title.length < 5 || note.description.length < 5}
             type="submit"
@@ -107,27 +120,12 @@ const AddNote = (props) => {
               theme === "dark" ? "addnotecard-dark" : "addnotecard-light"
             }`}
           >
-            <div
-              className={`modal-header ${
-                theme === "dark" ? "modal-header-dark" : ""
-              }`}
-            >
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Choose your theme for note
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
             <div className="modal-body">
-            <ColorPicker
-              hideInput={["rgb", "hsv"]}
-              color={color}
-              onChange={setColor}
-            />
+              <ColorPicker
+                hideInput={["rgb", "hsv"]}
+                color={color}
+                onChange={setColor}
+              />
             </div>
             <div
               className={`modal-footer ${
@@ -137,10 +135,10 @@ const AddNote = (props) => {
               <button
                 type="button"
                 className="btn btn-secondary"
-                data-bs-dismiss="modal"                
+                data-bs-dismiss="modal"
               >
                 Close
-              </button>             
+              </button>
             </div>
           </div>
         </div>
