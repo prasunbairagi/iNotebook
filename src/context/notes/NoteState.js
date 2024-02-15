@@ -34,12 +34,12 @@ const NoteState = (props) => {
     console.log(json);
     // const json = response.json();
     const note = {
-      _id: "6522c1dede434c0fa0234a833",
-      user: "6519947c629bf0946bd4786c",
+      _id: json._id,
+      user: json.user,
       title: title,
       description: description,
       tag: tag,
-      date: "2023-10-08T14:51:10.580Z",
+      date: json.date,
       __v: 0,
     };
     setNotes(notes.concat(note));
