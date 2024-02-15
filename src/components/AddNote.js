@@ -1,19 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import noteContext from "../context/notes/noteContext";
 import { useSelector } from "react-redux";
 import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/css";
 const AddNote = (props) => {
   const [color, setColor] = useColor("#fff700");
+  // const [colorPicked, setColorPicked] = useState("#fff700");
   // const [picker, setPicker] = useState(false);
   const theme = useSelector((state) => state.theme);
   const context = useContext(noteContext);
   const { addNote } = context;
-  const [note, setNote] = useState({ title: "", description: "", tag: "" });
-  const handleClick = (e) => {
+  const [note, setNote] = useState({ title: "", description: "", tag: "",color:color.hex });
+  const handleClick = async (e) => {
     e.preventDefault();
-    addNote(note.title, note.description, note.tag);
-    setNote({ title: "", description: "", tag: "" });
+    await addNote(note.title, note.description, note.tag, color.hex);
+    setNote({ title: "", description: "", tag: "" , color:"#fff700" });
     props.showAlert("Added Successfully", "success");
   };
   const onChange = (e) => {

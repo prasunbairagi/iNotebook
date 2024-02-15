@@ -20,7 +20,7 @@ const NoteState = (props) => {
   };
   
   //Add a note
-  const addNote = async (title, description, tag) => {
+  const addNote = async (title, description, tag, color) => {
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: "POST",
       headers: {
@@ -28,7 +28,7 @@ const NoteState = (props) => {
         "auth-token":
           localStorage.getItem('token'),
       },
-      body: JSON.stringify({title, description, tag}),
+      body: JSON.stringify({title, description, tag, color}),
     });
     const json = await response.json();
     console.log(json);
@@ -40,6 +40,7 @@ const NoteState = (props) => {
       description: description,
       tag: tag,
       date: json.date,
+      color:json.color,
       __v: 0,
     };
     setNotes(notes.concat(note));

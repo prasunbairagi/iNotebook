@@ -22,10 +22,10 @@ const NotesSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  // color:{
-  //   type: String,
-  //   default:"#fff000"
-  // }  
+  color:{
+    type: String,
+    default:"#fff000"
+  }  
 });
 
 module.exports = mongoose.model("notes", NotesSchema);

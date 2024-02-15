@@ -23,7 +23,7 @@ router.post('/addnote',fetchuser,
 ],
 async (req,res)=>{
     try{
-        const {title,description,tag}= req.body;
+        const {title,description,tag,color}= req.body;
          //if there are errors, return the errors
         const result = validationResult(req);
         if (!result.isEmpty()) {
@@ -33,6 +33,7 @@ async (req,res)=>{
             title,
             description,
             tag,
+            color,
             user : req.user.id 
         })
         const savedNote = await note.save();
